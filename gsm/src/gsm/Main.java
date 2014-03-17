@@ -1,11 +1,15 @@
 package gsm;
 
+import gsm.model.History;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
 import gsm.model.Plan;
 import gsm.model.SimplePlan;
 import gsm.model.User;
+
+import java.util.Date;
+import java.util.List;
 
 public class Main
 {
@@ -41,6 +45,11 @@ public class Main
         p1.sendData( new Object() );
         p2.getData();
 
+    }
+
+    public void getHistory( Operator op, String number, Date startDate, Date endDate )
+    {
+        List<History> history = op.getHistory( number, startDate, endDate );
     }
 
 }

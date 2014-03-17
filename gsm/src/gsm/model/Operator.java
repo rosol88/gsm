@@ -1,5 +1,6 @@
 package gsm.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Operator
@@ -13,6 +14,8 @@ public class Operator
     private String name;
 
     private List<Plan> plans;
+
+    private List<Phone> phones;
 
     public String getName()
     {
@@ -32,6 +35,22 @@ public class Operator
     public void setPlans( List<Plan> plans )
     {
         this.plans = plans;
+    }
+
+    public List<History> getHistory( String number, Date startDate, Date endDate )
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public List<Phone> getPhones()
+    {
+        return phones;
+    }
+
+    public void setPhones( List<Phone> phones )
+    {
+        this.phones = phones;
     }
 
 }
