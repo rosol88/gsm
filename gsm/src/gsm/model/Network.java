@@ -13,6 +13,8 @@ public class Network
 
     List<Phone> phones;
 
+    List<History> history;
+
     private Operator operator;
 
     public List<Phone> getPhones()
