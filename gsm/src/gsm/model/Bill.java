@@ -3,7 +3,8 @@ package gsm.model;
 public class Bill {
 
 	public Bill(Phone phone, double price) {
-		
+		this.phone=phone;
+		this.price=price;
 	}
 
 	private double price;

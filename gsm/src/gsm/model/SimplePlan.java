@@ -8,6 +8,7 @@ public class SimplePlan
     extends Plan
 {
 
+	private double voiceBid=1;
     public SimplePlan( String name, Operator operator )
     {
         super( name, operator );
@@ -33,7 +34,9 @@ public class SimplePlan
 	}
 	private double calculate(Call details) {
 		System.out.println("call");
-		return 0;
+		long time=details.getTime();
+		double price=time/1000 * voiceBid;
+		return price;
 	}
 
 

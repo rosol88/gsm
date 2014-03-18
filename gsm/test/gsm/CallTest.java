@@ -31,6 +31,7 @@ public class CallTest {
 		assertEquals("Nieprawid³owy typ po³¹czenia",ConnectType.VOICE,hist.getType());
 		
 		Bill bill=from.getOperator().getBill(from.getNumber());
+		assertEquals("Nieprawid³owa kwota",1, bill.getPrice(),0.0001);
 	}
 
 }
