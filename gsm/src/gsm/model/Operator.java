@@ -1,5 +1,6 @@
 package gsm.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,8 @@ public class Operator
 
     private List<Plan> plans;
 
-    private List<Phone> phones;
+    private List<Phone> phones=new ArrayList<Phone>();
+    private List<History> history=new ArrayList<History>();
 
     public String getName()
     {
@@ -37,6 +39,16 @@ public class Operator
         this.plans = plans;
     }
 
+    public List<History> getHistory( String number)
+    {
+    	List<History> hist=new ArrayList<History>();
+    	for (History h : history) {
+			if(h.getFromPhone().getNumber().equals(number) || h.getToPhone().getNumber().equals(number))
+				hist.add(h);
+    	}
+        return hist;
+    }
+    
     public List<History> getHistory( String number, Date startDate, Date endDate )
     {
         // TODO Auto-generated method stub
@@ -52,5 +64,23 @@ public class Operator
     {
         this.phones = phones;
     }
+
+	public void addHistory(History hist) {
+		history.add(hist);
+	}
+
+	public Bill getBill(String number) {
+		
+		List<History> phoneHistory=getHistory(number);
+		Phone phone=SearchUtils.findPhone(phones, number);
+		double price=phone.getPlan().calculatePrice(phoneHistory);
+		Bill bill=new Bill(phone,price);
+		return bill;
+	}
+
+	public void addPhone(Phone phone) {
+		phones.add(phone);
+		
+	}
 
 }

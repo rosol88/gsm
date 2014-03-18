@@ -21,10 +21,14 @@ public class Phone
         super();
         this.number = number;
         this.plan = plan;
+        getOperator().addPhone(this);
     }
 
     private Plan plan;
 
+    public Operator getOperator(){
+    	return plan.getOperator();
+    }
     public String getNumber()
     {
         return number;
@@ -43,6 +47,7 @@ public class Phone
     public void setNetwork( Network network )
     {
         this.network = network;
+        network.addPhone(this);
     }
 
     public Plan getPlan()
@@ -92,4 +97,28 @@ public class Phone
     {
         messages.add( message );
     }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Phone other = (Phone) obj;
+		if (number == null) {
+			if (other.number != null)
+				return false;
+		} else if (!number.equals(other.number))
+			return false;
+		return true;
+	}
+    
 }

@@ -1,5 +1,6 @@
 package gsm.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Network
@@ -11,7 +12,7 @@ public class Network
         this.operator = operator;
     }
 
-    List<Phone> phones;
+    List<Phone> phones=new ArrayList<Phone>();
 
     List<History> history;
 
@@ -56,10 +57,13 @@ public class Network
 
     }
 
-    private Phone getPhone( String fromNumber )
+    private Phone getPhone( String number )
     {
-        // TODO Auto-generated method stub
-        return null;
+    	for (Phone phone : phones) {
+			if(phone.getNumber().equals(number))
+				return phone;
+		}
+		return null;
     }
 
     private void validateNumbers( String fromNumber, String toNumber )
@@ -78,7 +82,14 @@ public class Network
         validatePhones( fromPhone, toPhone );
 
         Call call = new Call( fromPhone, toPhone, this );
+        History hist=new History(fromPhone,toPhone,call);
+        fromPhone.getOperator().addHistory(hist);
         return call;
 
     }
+
+	public void addPhone(Phone phone) {
+		phones.add(phone);
+		
+	}
 }

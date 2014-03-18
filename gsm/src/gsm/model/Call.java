@@ -2,7 +2,7 @@ package gsm.model;
 
 import java.util.Date;
 
-public class Call
+public class Call implements HistoryDetail
 {
 
     public Call( Phone fromPhone, Phone toPhone, Network network )
@@ -31,4 +31,11 @@ public class Call
         this.endDate = new Date();
 
     }
+
+
+	public long getTime() {
+		return endDate.getTime()-startDate.getTime();
+	}
+
+
 }
