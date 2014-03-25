@@ -1,4 +1,4 @@
-package gsm;
+package gsm.integration;
 
 import static org.junit.Assert.*;
 import gsm.model.Phone;

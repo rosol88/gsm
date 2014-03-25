@@ -1,4 +1,4 @@
-package gsm;
+package gsm.integration;
 
 import gsm.model.Network;
 import gsm.model.Operator;

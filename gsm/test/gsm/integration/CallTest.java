@@ -1,4 +1,4 @@
-package gsm;
+package gsm.integration;
 
 import static org.junit.Assert.assertEquals;
 import gsm.model.Bill;
