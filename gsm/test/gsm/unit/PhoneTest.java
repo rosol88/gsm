@@ -8,7 +8,7 @@ import gsm.model.Call;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
-import gsm.model.Plan;
+import gsm.plan.Plan;
 
 import org.junit.Before;
 import org.junit.Test;

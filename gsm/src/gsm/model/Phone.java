@@ -1,6 +1,7 @@
 package gsm.model;
 
 import gsm.exeption.NoNetworkException;
+import gsm.plan.Plan;
 
 import java.util.ArrayList;
 import java.util.List;

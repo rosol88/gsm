@@ -1,5 +1,7 @@
 package gsm.model;
 
+import gsm.plan.Plan;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

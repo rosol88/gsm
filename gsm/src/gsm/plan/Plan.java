@@ -1,4 +1,7 @@
-package gsm.model;
+package gsm.plan;
+
+import gsm.model.History;
+import gsm.model.Operator;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ public abstract class Plan
         this.operator = operator;
     }
 
-    abstract double calculatePrice(List<History> history);
+    public abstract double calculatePrice(List<History> history);
 
     public String getName()
     {

@@ -4,9 +4,11 @@ import gsm.model.History;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
-import gsm.model.Plan;
-import gsm.model.SimplePlan;
 import gsm.model.User;
+import gsm.plan.Plan;
+import gsm.plan.OrangePopPlan;
+import gsm.plan.PlanFactory;
+import gsm.plan.SimplePlanFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Main
 
     public static void main( String[] args )
     {
+    	PlanFactory planFactory=new SimplePlanFactory();
         Operator op1 = new Operator( "Orange" );
         Operator op2 = new Operator( "Plus" );
 
@@ -25,8 +28,8 @@ public class Main
         User u1 = new User( "jkowlaski" );
         User u2 = new User( "anowak" );
 
-        Plan pl1 = new SimplePlan( "POP", op1 );
-        Plan pl2 = new SimplePlan( "Firma", op2 );
+        Plan pl1 = planFactory.createPlan( "pop", op1 );
+        Plan pl2 = planFactory.createPlan( "firma", op2 );
 
         Phone p1 = new Phone( "609222111", pl1 );
         Phone p2 = new Phone( "899221002", pl2 );

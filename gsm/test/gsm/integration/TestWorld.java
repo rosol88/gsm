@@ -3,9 +3,9 @@ package gsm.integration;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
-import gsm.model.Plan;
-import gsm.model.SimplePlan;
 import gsm.model.User;
+import gsm.plan.Plan;
+import gsm.plan.OrangePopPlan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public class TestWorld {
         User u1 = new User( "jkowlaski" );
         User u2 = new User( "anowak" );
 
-        Plan pl1 = new SimplePlan( "POP", op1 );
-        Plan pl2 = new SimplePlan( "Firma", op2 );
+        Plan pl1 = new OrangePopPlan( "POP", op1 );
+        Plan pl2 = new OrangePopPlan( "Firma", op2 );
 
         Phone p1 = new Phone( "555555555", pl1 );
         Phone p2 = new Phone( "666666666", pl2 );
