@@ -9,40 +9,46 @@ import gsm.model.Operator;
 
 import java.util.List;
 
-public class OrangePopPlan
-    extends Plan
-{
+public class OrangePopPlan extends AbstractPlan {
 
-	private double voiceBid=1;
-    public OrangePopPlan( String name, Operator operator )
-    {
-        super( name, operator );
-    }
+	private double voiceBid = 1;
+	private double smsCost = 2;
 
-    @Override
-    public double calculatePrice(List<History> history)
-    {
-    	double price=0;
-    	for (History hist : history) {
-    		HistoryDetail o=hist.getDetails();
-    		if(hist.getType()==ConnectType.VOICE)
-    			price+=calculate((Call)o);
-    		else
-    			throw new UnsupportedTypeException();
+	public OrangePopPlan(String name, Operator operator) {
+		super(name, operator);
+	}
+
+	@Override
+	public double calculatePrice(List<History> history) {
+		double price = 0;
+		for (History hist : history) {
+			HistoryDetail o = hist.getDetails();
+			if (hist.getType() == ConnectType.VOICE)
+				price += calculate((Call) o);
+			else
+				throw new UnsupportedTypeException();
 		}
-        return price;
-    }
+		return price;
+	}
 
 	private double calculate(HistoryDetail details) {
 		System.out.println("inteface");
 		return 0;
 	}
+
 	private double calculate(Call details) {
 		System.out.println("call");
-		long time=details.getTime();
-		double price=time/1000 * voiceBid;
+		long time = details.getTime();
+		double price = time / 1000 * voiceBid;
 		return price;
 	}
 
+	@Override
+	public double calculatePrice(History history) {
+		if (history.getType() == ConnectType.TEXT) {
+			return smsCost;
+		}
+		return 0;
+	}
 
 }

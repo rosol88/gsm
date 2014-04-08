@@ -1,44 +1,23 @@
 package gsm.plan;
 
+import java.util.List;
+
 import gsm.model.History;
 import gsm.model.Operator;
 
-import java.util.List;
+public interface Plan {
 
-public abstract class Plan
-{
+	public Operator getOperator();
 
-    private String name;
+	public void setOperator(Operator operator);
 
-    private Operator operator;
+	public String getName();
 
-    public Plan( String name, Operator operator )
-    {
-        super();
-        this.name = name;
-        this.operator = operator;
-    }
+	public void setName(String name);
 
-    public Operator getOperator()
-    {
-        return operator;
-    }
+	public double calculatePrice(List<History> history);
 
-    public void setOperator( Operator operator )
-    {
-        this.operator = operator;
-    }
+	public double calculatePrice(History history);
 
-    public abstract double calculatePrice(List<History> history);
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName( String name )
-    {
-        this.name = name;
-    }
-
+	public Object clone() throws CloneNotSupportedException;
 }
