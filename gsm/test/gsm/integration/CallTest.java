@@ -49,8 +49,12 @@ public class CallTest {
 		Thread.sleep(1000);
 		from.stopCall();
 
+		from.startCall(toNum);
+		Thread.sleep(1000);
+		from.stopCall();
+
 		List<History> history = from.getOperator().getHistory(fromNum);
-		assertEquals("Nieprawid³owa iloœæ pozycji historii", 1, history.size());
+		assertEquals("Nieprawid³owa iloœæ pozycji historii", 2, history.size());
 		ReportBuilder rb = new ConsoleReportBuilder(from.getPlan());
 
 		rb.buildReport(history);
