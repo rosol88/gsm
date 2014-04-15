@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import gsm.exeption.NoNetworkException;
-import gsm.model.Call;
+import gsm.model.VoiceConnect;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
@@ -28,7 +28,7 @@ public class PhoneTest {
 	Network network;
 
 	@Mock
-	Call call;
+	VoiceConnect call;
 
 	@Mock
 	Phone testPhone;

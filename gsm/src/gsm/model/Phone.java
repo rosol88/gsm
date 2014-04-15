@@ -14,7 +14,7 @@ public class Phone {
 
 	private List<Message> messages = new ArrayList<Message>();
 
-	private Call call;
+	private VoiceConnect call;
 
 	public Phone(String number, Plan plan) {
 		super();

@@ -8,6 +8,19 @@ import java.util.Map;
 
 public class SimplePlanFactory implements PlanFactory {
 
+	private static SimplePlanFactory factory;
+
+	private SimplePlanFactory() {
+
+	}
+
+	public static SimplePlanFactory getInstance() {
+		if (factory == null) {
+			factory = new SimplePlanFactory();
+		}
+		return factory;
+	}
+
 	private static Map<String, Plan> plans = new HashMap<String, Plan>();
 	static {
 		Operator plus = new Operator("Plus");

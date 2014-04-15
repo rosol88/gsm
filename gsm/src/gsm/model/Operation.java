@@ -5,7 +5,7 @@ public interface Operation
 
     public void sendText( String fromNumber, String toNumber, String text );
 
-    public void startCall( Call call );
+    public void startCall( VoiceConnect call );
 
     public void stopCall();
 

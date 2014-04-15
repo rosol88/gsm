@@ -3,7 +3,7 @@ package gsm.model;
 public class History
 {
 
-    public History(Phone fromPhone, Phone toPhone, Call call) {
+    public History(Phone fromPhone, Phone toPhone, VoiceConnect call) {
 		this.fromPhone=fromPhone;
 		this.toPhone=toPhone;
 		type=ConnectType.VOICE;

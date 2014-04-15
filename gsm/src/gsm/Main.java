@@ -16,7 +16,7 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) {
-		PlanFactory planFactory = new SimplePlanFactory();
+		PlanFactory planFactory = SimplePlanFactory.getInstance();
 		Operator op1 = new Operator("Orange");
 		Operator op2 = new Operator("Plus");
 

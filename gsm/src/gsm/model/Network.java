@@ -72,7 +72,7 @@ public class Network
 
     }
 
-    public Call call( String fromNumber, String toNumber )
+    public VoiceConnect call( String fromNumber, String toNumber )
     {
         validateNumbers( fromNumber, toNumber );
 
@@ -81,7 +81,7 @@ public class Network
 
         validatePhones( fromPhone, toPhone );
 
-        Call call = new Call( fromPhone, toPhone, this );
+        VoiceConnect call = new VoiceConnect( fromPhone, toPhone, this );
         History hist=new History(fromPhone,toPhone,call);
         fromPhone.getOperator().addHistory(hist);
         return call;

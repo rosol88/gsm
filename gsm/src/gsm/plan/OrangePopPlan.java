@@ -1,7 +1,7 @@
 package gsm.plan;
 
 import gsm.exeption.UnsupportedTypeException;
-import gsm.model.Call;
+import gsm.model.VoiceConnect;
 import gsm.model.ConnectType;
 import gsm.model.History;
 import gsm.model.HistoryDetail;
@@ -24,7 +24,7 @@ public class OrangePopPlan extends AbstractPlan {
 		for (History hist : history) {
 			HistoryDetail o = hist.getDetails();
 			if (hist.getType() == ConnectType.VOICE)
-				price += calculate((Call) o);
+				price += calculate((VoiceConnect) o);
 			else
 				throw new UnsupportedTypeException();
 		}
@@ -36,7 +36,7 @@ public class OrangePopPlan extends AbstractPlan {
 		return 0;
 	}
 
-	private double calculate(Call details) {
+	private double calculate(VoiceConnect details) {
 		System.out.println("call");
 		long time = details.getTime();
 		double price = time / 1000 * voiceBid;

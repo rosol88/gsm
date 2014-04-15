@@ -1,6 +1,14 @@
 package gsm.model;
 
-public class TextConnect
-{
+import gsm.report.ReportBuilder;
+
+public class TextConnect implements HistoryDetail {
+
+	@Override
+	public String accept(ReportBuilder reportBuilder) {
+
+		return "";
+
+	}
 
 }

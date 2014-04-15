@@ -1,5 +1,7 @@
 package gsm.model;
 
-public interface HistoryDetail {
+import gsm.report.ReportBuilder;
+
+public interface HistoryDetail extends Visitable {
 
 }
