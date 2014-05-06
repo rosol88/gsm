@@ -6,11 +6,12 @@ import java.util.Date;
 
 public class VoiceConnect implements HistoryDetail {
 
-	public VoiceConnect(Phone fromPhone, Phone toPhone, Network network) {
+	public VoiceConnect(Phone fromPhone, Phone toPhone, Network startNetwork, Network endNetwork) {
 		super();
 		this.fromNumber = fromPhone.getNumber();
 		this.toNumber = toPhone.getNumber();
-		this.startNetwork = network;
+		this.startNetwork = startNetwork;
+		this.endNetwork=endNetwork;
 		this.startDate = new Date();
 	}
 

@@ -1,11 +1,12 @@
 package gsm.integration;
 
+import gsm.model.MainConnector;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
 import gsm.model.User;
-import gsm.plan.Plan;
 import gsm.plan.OrangePopPlan;
+import gsm.plan.Plan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,9 @@ public class TestWorld {
 
         Network net1 = new Network( op1 );
         Network net2 = new Network( op2 );
+        MainConnector mc=new MainConnector();
+        mc.registerNetwork(net1);
+        mc.registerNetwork(net2);
 
         User u1 = new User( "jkowlaski" );
         User u2 = new User( "anowak" );
