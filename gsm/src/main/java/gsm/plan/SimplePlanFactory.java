@@ -6,20 +6,22 @@ import gsm.model.Operator;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.inject.Singleton;
+@Singleton
 public class SimplePlanFactory implements PlanFactory {
 
 	private static SimplePlanFactory factory;
 
-	private SimplePlanFactory() {
+	public SimplePlanFactory() {
 
 	}
 
-	public static SimplePlanFactory getInstance() {
-		if (factory == null) {
-			factory = new SimplePlanFactory();
-		}
-		return factory;
-	}
+//	public static SimplePlanFactory getInstance() {
+//		if (factory == null) {
+//			factory = new SimplePlanFactory();
+//		}
+//		return factory;
+//	}
 
 	private static Map<String, Plan> plans = new HashMap<String, Plan>();
 	static {

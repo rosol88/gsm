@@ -1,5 +1,6 @@
 package gsm.integration;
 
+import gsm.GsmModule;
 import gsm.model.MainConnector;
 import gsm.model.Network;
 import gsm.model.Operator;
@@ -7,9 +8,13 @@ import gsm.model.Phone;
 import gsm.model.User;
 import gsm.plan.OrangePopPlan;
 import gsm.plan.Plan;
+import gsm.plan.PlanFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class TestWorld {
 
@@ -19,6 +24,9 @@ public class TestWorld {
 	private List<User> users;
 	public TestWorld( )
     {
+		
+		Injector injector = Guice.createInjector(new GsmModule());
+		PlanFactory pf=injector.getInstance(PlanFactory.class);
         Operator op1 = new Operator( "Orange" );
         Operator op2 = new Operator( "Plus" );
 

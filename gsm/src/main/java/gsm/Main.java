@@ -8,15 +8,20 @@ import gsm.model.User;
 import gsm.plan.Plan;
 import gsm.plan.PlanFactory;
 import gsm.plan.PromoPlan;
-import gsm.plan.SimplePlanFactory;
 
 import java.util.Date;
 import java.util.List;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class Main {
 
 	public static void main(String[] args) {
-		PlanFactory planFactory = SimplePlanFactory.getInstance();
+		
+	
+		Injector injector = Guice.createInjector(new GsmModule());
+		PlanFactory planFactory=injector.getInstance(PlanFactory.class);
 		Operator op1 = new Operator("Orange");
 		Operator op2 = new Operator("Plus");
 

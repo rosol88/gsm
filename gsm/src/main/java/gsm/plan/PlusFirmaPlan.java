@@ -1,18 +1,18 @@
 package gsm.plan;
 
 import gsm.exeption.UnsupportedTypeException;
-import gsm.model.VoiceConnect;
 import gsm.model.ConnectType;
 import gsm.model.History;
 import gsm.model.HistoryDetail;
 import gsm.model.Operator;
+import gsm.model.VoiceConnect;
 
 import java.util.List;
 
 public class PlusFirmaPlan extends AbstractPlan {
 
 	private double voiceBid = 1;
-
+	
 	public PlusFirmaPlan(String name, Operator operator) {
 		super(name, operator);
 	}
