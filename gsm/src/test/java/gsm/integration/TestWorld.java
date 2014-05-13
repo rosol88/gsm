@@ -1,7 +1,7 @@
 package gsm.integration;
 
 import gsm.GsmModule;
-import gsm.model.MainConnector;
+import gsm.model.Connector;
 import gsm.model.Network;
 import gsm.model.Operator;
 import gsm.model.Phone;
@@ -27,12 +27,13 @@ public class TestWorld {
 		
 		Injector injector = Guice.createInjector(new GsmModule());
 		PlanFactory pf=injector.getInstance(PlanFactory.class);
+		Connector mc=injector.getInstance(Connector.class);
         Operator op1 = new Operator( "Orange" );
         Operator op2 = new Operator( "Plus" );
 
         Network net1 = new Network( op1 );
         Network net2 = new Network( op2 );
-        MainConnector mc=new MainConnector();
+        
         mc.registerNetwork(net1);
         mc.registerNetwork(net2);
 

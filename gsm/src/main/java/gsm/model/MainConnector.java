@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.google.inject.Singleton;
+
+@Singleton
 public class MainConnector implements Connector {
 
 	private List<Network> networks = new ArrayList<Network>();
