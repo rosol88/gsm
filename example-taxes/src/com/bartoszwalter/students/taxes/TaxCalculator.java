@@ -5,10 +5,11 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
 import com.bartoszwalter.students.taxes.view.Printer;
-import com.bartoszwalter.students.taxes.view.PrinterFactory;
+import com.bartoszwalter.students.taxes.view.Reader;
+import com.bartoszwalter.students.taxes.view.ViewFactory;
 
 public class TaxCalculator {
-	
+
 	public static double podstawa = 0;
 	public static char umowa = ' ';
 	// składki na ubezpieczenia społeczne
@@ -16,35 +17,49 @@ public class TaxCalculator {
 	public static double s_rentowa = 0; // 1,5% podstawy
 	public static double u_chorobowe = 0; // 2,45% podstawy
 	// składki na ubezpieczenia zdrowotne
-	public static double kosztyUzyskania = 111.25; 
+	public static double kosztyUzyskania = 111.25;
 	public static double s_zdrow1 = 0; // od podstawy wymiaru 9%
 	public static double s_zdrow2 = 0; // od podstawy wymiaru 7,75 %
 	public static double zaliczkaNaPod = 0; // zaliczka na podatek dochodowy 18%
-	public static double kwotaZmiejsz = 46.33; // kwota zmienjszająca podatek 46,33 PLN
+	public static double kwotaZmiejsz = 46.33; // kwota zmienjszająca podatek
+												// 46,33 PLN
 	public static double zaliczkaUS = 0;
 	public static double zaliczkaUS0 = 0;
-private static Printer printer;
+	private static Printer printer;
+	private ViewFactory vw;
+	private Reader reader;
+	public ViewFactory getViewFactory() {
+		if (vw == null) {
+			vw = new ViewFactory();
+		}
+		return vw;
+	}
+
 	public static void main(String[] args) {
-		printer=PrinterFactory.getPrinter();
+		new TaxCalculator().run();
+	}
+
+	public void run() {
+		ViewFactory vf = getViewFactory();
+		printer = vf.getPrinter();
+		reader=vf.getReader();
 		try {
-			InputStreamReader isr = new InputStreamReader(System.in);
-			BufferedReader br = new BufferedReader(isr);
-			
-			printer.print("Podaj kwotę dochodu: ");	
-			podstawa = Double.parseDouble(br.readLine());
-			
+
+			printer.print("Podaj kwotę dochodu: ");
+			podstawa = Double.parseDouble(reader.readLine());
+
 			printer.print("Typ umowy: (P)raca, (Z)lecenie: ");
-			umowa = br.readLine().charAt(0);
-			
+			umowa = reader.readLine().charAt(0);
+
 		} catch (Exception ex) {
 			printer.println("Błędna kwota");
 			System.err.println(ex);
 			return;
 		}
-		
+
 		DecimalFormat df00 = new DecimalFormat("#.00");
 		DecimalFormat df = new DecimalFormat("#");
-		
+
 		if (umowa == 'P') {
 			printer.println("UMOWA O PRACĘ");
 			printer.println("Podstawa wymiaru składek " + podstawa);
@@ -60,12 +75,13 @@ private static Printer printer;
 							+ oPodstawa);
 			obliczUbezpieczenia(oPodstawa);
 			printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
-					+ df00.format(s_zdrow1) + " 7,75% = " + df00.format(s_zdrow2));
+					+ df00.format(s_zdrow1) + " 7,75% = "
+					+ df00.format(s_zdrow2));
 			printer.println("Koszty uzyskania przychodu w stałej wysokości "
 					+ kosztyUzyskania);
 			double podstawaOpodat = oPodstawa - kosztyUzyskania;
-			double podstawaOpodat0 = Double
-					.parseDouble(df.format(podstawaOpodat));
+			double podstawaOpodat0 = Double.parseDouble(df
+					.format(podstawaOpodat));
 			printer.println("Podstawa opodatkowania " + podstawaOpodat
 					+ " zaokrąglona " + df.format(podstawaOpodat0));
 			obliczPodatek(podstawaOpodat0);
@@ -101,13 +117,15 @@ private static Printer printer;
 							+ oPodstawa);
 			obliczUbezpieczenia(oPodstawa);
 			printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
-					+ df00.format(s_zdrow1) + " 7,75% = " + df00.format(s_zdrow2));
+					+ df00.format(s_zdrow1) + " 7,75% = "
+					+ df00.format(s_zdrow2));
 			kwotaZmiejsz = 0;
 			kosztyUzyskania = (oPodstawa * 20) / 100;
 			printer.println("Koszty uzyskania przychodu (stałe) "
 					+ kosztyUzyskania);
 			double podstawaOpodat = oPodstawa - kosztyUzyskania;
-			double podstawaOpodat0 = Double.parseDouble(df.format(podstawaOpodat));
+			double podstawaOpodat0 = Double.parseDouble(df
+					.format(podstawaOpodat));
 			printer.println("Podstawa opodatkowania " + podstawaOpodat
 					+ " zaokrąglona " + df.format(podstawaOpodat0));
 			obliczPodatek(podstawaOpodat0);
@@ -150,5 +168,10 @@ private static Printer printer;
 	public static void obliczUbezpieczenia(double podstawa) {
 		s_zdrow1 = (podstawa * 9) / 100;
 		s_zdrow2 = (podstawa * 7.75) / 100;
+	}
+
+	public void setViewFactory(ViewFactory vw) {
+		this.vw = vw;
+
 	}
 }

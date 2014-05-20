@@ -1,4 +1,6 @@
-package com.bartoszwalter.students.taxes.view;
+package com.bartoszwalter.students.taxes.io;
+
+import com.bartoszwalter.students.taxes.view.Printer;
 
 public class ConsolePrinter implements Printer{
 
