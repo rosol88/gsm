@@ -1,4 +1,4 @@
-package com.bartoszwalter.students.taxes.io;
+package test;
 
 import java.io.File;
 import java.io.IOException;

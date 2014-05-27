@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -9,7 +10,6 @@ import org.junit.Test;
 
 import com.bartoszwalter.students.taxes.TaxCalculator;
 import com.bartoszwalter.students.taxes.io.ConsoleBufforPrinter;
-import com.bartoszwalter.students.taxes.io.FileService;
 import com.bartoszwalter.students.taxes.view.Reader;
 import com.bartoszwalter.students.taxes.view.ViewFactory;
 
@@ -33,11 +33,18 @@ public class TaxTest {
 				when(reader.readLine()).thenReturn(k).thenReturn(u);
 				when(vw.getReader()).thenReturn(reader);
 				cal.setViewFactory(vw);
-				cal.run();
 				FileService fs = new FileService();
-				printer.getSb().toString().equals(fs.readFile("k"+k+u+".txt"));
+				assertTrue(printer.getSb().toString().equals(fs.readFile("k"+k+u+".txt")));
 			}
 		}
+	}
+	
+	@Test
+	public void viewFactory() throws NumberFormatException, IOException {
+		TaxCalculator cal = new TaxCalculator();
+		ViewFactory vf=cal.getViewFactory();
+		assertNotNull(vf.getPrinter());
+		assertNotNull(vf.getReader());
 	}
 
 }

@@ -6,9 +6,7 @@ public class ConsoleBufforPrinter extends ConsolePrinter {
 	public StringBuilder getSb() {
 		return sb;
 	}
-	public void setSb(StringBuilder sb) {
-		this.sb = sb;
-	}
+
 	@Override
 	public void print(String text) {
 		super.print(text);

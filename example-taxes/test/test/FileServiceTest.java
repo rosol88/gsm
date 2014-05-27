@@ -2,8 +2,6 @@ package test;
 
 import org.junit.Test;
 
-import com.bartoszwalter.students.taxes.io.FileService;
-
 public class FileServiceTest {
 
 	@Test
