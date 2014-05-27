@@ -9,7 +9,7 @@ public class ConsoleBufforPrinter extends ConsolePrinter {
 
 	@Override
 	public void print(String text) {
-		super.print(text);
+		//super.print(text);
 		sb.append(text);
 	}
 

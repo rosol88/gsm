@@ -3,6 +3,7 @@ Podstawa wymiaru składek 1000.0
 Składka na ubezpieczenie emerytalne 97,60
 Składka na ubezpieczenie rentowe    15,00
 Składka na ubezpieczenie chorobowe  24,50
+Podstawa wymiaru składki na ubezpieczenie zdrowotne: 862.9
 Składka na ubezpieczenie zdrowotne: 9% = 77,66 7,75% = 66,87
 Koszty uzyskania przychodu w stałej wysokości 111.25
 Podstawa opodatkowania 751.65 zaokrąglona 752
@@ -11,3 +12,4 @@ Kwota wolna od podatku = 46.33
 Podatek potrącony = 89,03
 Zaliczka do urzędu skarbowego = 22,16 po zaokrągleniu = 22
 
+Pracownik otrzyma wynagrodzenie netto w wysokości = 763,24

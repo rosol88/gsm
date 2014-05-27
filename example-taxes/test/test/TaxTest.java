@@ -33,6 +33,7 @@ public class TaxTest {
 				when(reader.readLine()).thenReturn(k).thenReturn(u);
 				when(vw.getReader()).thenReturn(reader);
 				cal.setViewFactory(vw);
+				cal.run();
 				FileService fs = new FileService();
 				assertTrue(printer.getSb().toString().equals(fs.readFile("k"+k+u+".txt")));
 			}

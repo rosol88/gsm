@@ -14,7 +14,7 @@ import com.bartoszwalter.students.taxes.view.ViewFactory;
 
 public class TestGenerator {
 
-	public static String[][] data = { { "1000" }, { "1"}, { "100000" }, { "100000" ,"SA"} };
+	public static String[][] data = { { "1000" }, { "1"}, { "100000" }, { "100000" ,"SA"},{"ADSSAD"} };
 	public static String[] type={"P","Z"};
 	@Test
 	public void test() throws NumberFormatException, IOException {

@@ -1,17 +1,16 @@
 package com.bartoszwalter.students.taxes;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
+import com.bartoszwalter.students.taxes.deal.Deal;
+import com.bartoszwalter.students.taxes.deal.DealFactory;
+import com.bartoszwalter.students.taxes.deal.UnsupportedDealException;
 import com.bartoszwalter.students.taxes.view.Printer;
 import com.bartoszwalter.students.taxes.view.Reader;
 import com.bartoszwalter.students.taxes.view.ViewFactory;
 
 public class TaxCalculator {
 
-	public static double podstawa = 0;
-	public static char umowa = ' ';
 	// składki na ubezpieczenia społeczne
 	public static double s_emerytalna = 0; // 9,76% podstawyy
 	public static double s_rentowa = 0; // 1,5% podstawy
@@ -28,6 +27,7 @@ public class TaxCalculator {
 	private static Printer printer;
 	private ViewFactory vw;
 	private Reader reader;
+
 	public ViewFactory getViewFactory() {
 		if (vw == null) {
 			vw = new ViewFactory();
@@ -40,22 +40,11 @@ public class TaxCalculator {
 	}
 
 	public void run() {
-		ViewFactory vf = getViewFactory();
-		printer = vf.getPrinter();
-		reader=vf.getReader();
-		try {
-
-			printer.print("Podaj kwotę dochodu: ");
-			podstawa = Double.parseDouble(reader.readLine());
-
-			printer.print("Typ umowy: (P)raca, (Z)lecenie: ");
-			umowa = reader.readLine().charAt(0);
-
-		} catch (Exception ex) {
-			printer.println("Błędna kwota");
-			System.err.println(ex);
+		init();
+		Double podstawa = readAmount();
+		if (podstawa == null)
 			return;
-		}
+		char umowa = readType();
 
 		DecimalFormat df00 = new DecimalFormat("#.00");
 		DecimalFormat df = new DecimalFormat("#");
@@ -148,6 +137,29 @@ public class TaxCalculator {
 		} else {
 			printer.println("Nieznany typ umowy!");
 		}
+	}
+
+	private char readType() {
+		printer.print("Typ umowy: (P)raca, (Z)lecenie: ");
+		return reader.readLine().charAt(0);
+	}
+
+	private Double readAmount() {
+		try {
+			printer.print("Podaj kwotę dochodu: ");
+			return Double.parseDouble(reader.readLine());
+		} catch (Exception ex) {
+			printer.println("Błędna kwota");
+			printer.println(ex.toString());
+			return null;
+		}
+
+	}
+
+	private void init() {
+		ViewFactory vf = getViewFactory();
+		printer = vf.getPrinter();
+		reader = vf.getReader();
 	}
 
 	public static void obliczZaliczke() {
