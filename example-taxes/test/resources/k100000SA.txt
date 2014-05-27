@@ -1,0 +1,1 @@
+Podaj kwotę dochodu: Typ umowy: (P)raca, (Z)lecenie: Nieznany typ umowy!

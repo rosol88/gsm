@@ -15,8 +15,10 @@ public class FileService {
 				.getResourceAsStream(name);
 		String s;
 		try {
+			if(is==null){
+				throw new RuntimeException("file not found "+name);
+			}
 			s = IOUtils.toString(is, "UTF-8");
-			System.out.println(s);
 			return s;
 		} catch (IOException e) {
 			e.printStackTrace();

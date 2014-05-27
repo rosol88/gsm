@@ -1,0 +1,12 @@
+Podaj kwotę dochodu: Typ umowy: (P)raca, (Z)lecenie: UMOWA-ZLECENIE
+Podstawa wymiaru składek 1.0
+Składka na ubezpieczenie emerytalne ,10
+Składka na ubezpieczenie rentowe    ,02
+Składka na ubezpieczenie chorobowe  ,02
+Składka na ubezpieczenie zdrowotne: 9% = ,08 7,75% = ,07
+Koszty uzyskania przychodu (stałe) 0.17257999999999998
+Podstawa opodatkowania 0.69032 zaokrąglona 1
+Zaliczka na podatek dochodowy 18 % = 0.18
+Podatek potrącony = ,18
+Zaliczka do urzędu skarbowego = ,11 po zaokrągleniu = 0
+
