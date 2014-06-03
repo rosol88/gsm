@@ -9,7 +9,7 @@ public class OrderDeal extends StandardDeal{
 	
 
 	@Override
-	public void getCosts() {
+	public void printCosts() {
 		kosztyUzyskania = (podstawa * 20) / 100;
 		printer.println("Koszty uzyskania przychodu (stałe) "
 				+ kosztyUzyskania);

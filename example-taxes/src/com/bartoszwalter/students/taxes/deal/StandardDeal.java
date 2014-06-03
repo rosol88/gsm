@@ -39,7 +39,7 @@ public class StandardDeal implements Deal {
 	}
 
 	@Override
-	public void getCosts() {
+	public void printCosts() {
 		printer.println("Koszty uzyskania przychodu w stałej wysokości "
 				+ kosztyUzyskania);
 

@@ -56,52 +56,64 @@ public class TaxCalculator {
 			deal.setKosztyUzyskania(kosztyUzyskania);
 			deal.setPrinter(printer);
 			deal.setPodstawa(oPodstawa);
-
-			printer.println(deal.getName());
-			printer.println("Podstawa wymiaru składek " + podstawa);
-			
-			printer.println("Składka na ubezpieczenie emerytalne "
-					+ df00.format(s_emerytalna));
-			printer.println("Składka na ubezpieczenie rentowe    "
-					+ df00.format(s_rentowa));
-			printer.println("Składka na ubezpieczenie chorobowe  "
-					+ df00.format(u_chorobowe));
-			printer.println("Podstawa wymiaru składki na ubezpieczenie zdrowotne: "
-							+ oPodstawa);
-			obliczUbezpieczenia(oPodstawa);
-			printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
-					+ df00.format(s_zdrow1) + " 7,75% = "
-					+ df00.format(s_zdrow2));
-			
-			deal.getCosts();
-			
-			double podstawaOpodat = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
-			double podstawaOpodat0 = Double.parseDouble(df
-					.format(podstawaOpodat));
-			printer.println("Podstawa opodatkowania " + podstawaOpodat
-					+ " zaokrąglona " + df.format(podstawaOpodat0));
-			obliczPodatek(podstawaOpodat0);
-			printer.println("Zaliczka na podatek dochodowy 18 % = "
-					+ zaliczkaNaPod);
-			deal.free(kwotaZmiejsz);
-			double podatekPotracony = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
-			printer.println("Podatek potrącony = "
-					+ df00.format(podatekPotracony));
-			obliczZaliczke();
-			zaliczkaUS0 = Double.parseDouble(df.format(zaliczkaUS));
-			printer.println("Zaliczka do urzędu skarbowego = "
-					+ df00.format(zaliczkaUS) + " po zaokrągleniu = "
-					+ df.format(zaliczkaUS0));
-			double wynagrodzenie = podstawa
-					- ((s_emerytalna + s_rentowa + u_chorobowe) + s_zdrow1 + zaliczkaUS0);
-			printer.println();
-			printer.println("Pracownik otrzyma wynagrodzenie netto w wysokości = "
-							+ df00.format(wynagrodzenie));
-			
+			print(deal,podstawa,oPodstawa,df00,df);
 			
 		} catch (UnsupportedDealException e) {
 			printer.println("Nieznany typ umowy!");
 		}
+	}
+
+	private void print(Deal deal, Double podstawa, double oPodstawa,
+			DecimalFormat df00,DecimalFormat df) {
+		printBase(deal,podstawa,oPodstawa,df00);
+		deal.printCosts();
+		printTax(deal,df,df00,podstawa);
+		
+	}
+
+	private void printTax(Deal deal,DecimalFormat df,DecimalFormat df00,double podstawa) {
+		double podstawaOpodat = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
+		double podstawaOpodat0 = Double.parseDouble(df
+				.format(podstawaOpodat));
+		printer.println("Podstawa opodatkowania " + podstawaOpodat
+				+ " zaokrąglona " + df.format(podstawaOpodat0));
+		obliczPodatek(podstawaOpodat0);
+		printer.println("Zaliczka na podatek dochodowy 18 % = "
+				+ zaliczkaNaPod);
+		deal.free(kwotaZmiejsz);
+		double podatekPotracony = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
+		printer.println("Podatek potrącony = "
+				+ df00.format(podatekPotracony));
+		obliczZaliczke();
+		zaliczkaUS0 = Double.parseDouble(df.format(zaliczkaUS));
+		printer.println("Zaliczka do urzędu skarbowego = "
+				+ df00.format(zaliczkaUS) + " po zaokrągleniu = "
+				+ df.format(zaliczkaUS0));
+		double wynagrodzenie = podstawa
+				- ((s_emerytalna + s_rentowa + u_chorobowe) + s_zdrow1 + zaliczkaUS0);
+		printer.println();
+		printer.println("Pracownik otrzyma wynagrodzenie netto w wysokości = "
+						+ df00.format(wynagrodzenie));
+		
+	}
+
+	private void printBase(Deal deal, Double podstawa, double oPodstawa,
+			DecimalFormat df00) {
+		printer.println(deal.getName());
+		printer.println("Podstawa wymiaru składek " + podstawa);
+		
+		printer.println("Składka na ubezpieczenie emerytalne "
+				+ df00.format(s_emerytalna));
+		printer.println("Składka na ubezpieczenie rentowe    "
+				+ df00.format(s_rentowa));
+		printer.println("Składka na ubezpieczenie chorobowe  "
+				+ df00.format(u_chorobowe));
+		printer.println("Podstawa wymiaru składki na ubezpieczenie zdrowotne: "
+						+ oPodstawa);
+		obliczUbezpieczenia(oPodstawa);
+		printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
+				+ df00.format(s_zdrow1) + " 7,75% = "
+				+ df00.format(s_zdrow2));
 		
 	}
 

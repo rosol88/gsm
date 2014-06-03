@@ -6,7 +6,7 @@ public interface Deal {
 
 	String getName();
 
-	void getCosts();
+	void printCosts();
 	
 	public void setPrinter(Printer printer) ;
 	public void setKosztyUzyskania(double kosztyUzyskania);
