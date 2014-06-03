@@ -5,11 +5,11 @@ Składka na ubezpieczenie rentowe    ,02
 Składka na ubezpieczenie chorobowe  ,02
 Podstawa wymiaru składki na ubezpieczenie zdrowotne: 0.8629
 Składka na ubezpieczenie zdrowotne: 9% = ,08 7,75% = ,07
-Koszty uzyskania przychodu w stałej wysokości 172.58
-Podstawa opodatkowania -171.71710000000002 zaokrąglona -172
-Zaliczka na podatek dochodowy 18 % = -30.96
-Kwota wolna od podatku = 0.0
-Podatek potrącony = -30,96
-Zaliczka do urzędu skarbowego = -31,03 po zaokrągleniu = -31
+Koszty uzyskania przychodu w stałej wysokości 111.25
+Podstawa opodatkowania -47.769999999999996 zaokrąglona -48
+Zaliczka na podatek dochodowy 18 % = -8.64
+Kwota wolna od podatku = 46.33
+Podatek potrącony = -54,97
+Zaliczka do urzędu skarbowego = -55,04 po zaokrągleniu = -55
 
-Pracownik otrzyma wynagrodzenie netto w wysokości = 31,79
+Pracownik otrzyma wynagrodzenie netto w wysokości = 55,79

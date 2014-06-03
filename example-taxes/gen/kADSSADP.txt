@@ -1,0 +1,2 @@
+Podaj kwotę dochodu: Błędna kwota
+java.lang.NumberFormatException: For input string: "ADSSAD"

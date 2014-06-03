@@ -49,26 +49,33 @@ public class TaxCalculator {
 		DecimalFormat df00 = new DecimalFormat("#.00");
 		DecimalFormat df = new DecimalFormat("#");
 
-		if (umowa == 'P') {
-			printer.println("UMOWA O PRACĘ");
-			printer.println("Podstawa wymiaru składek " + podstawa);
+		try {
 			double oPodstawa = obliczonaPodstawa(podstawa);
+			
+			Deal deal =DealFactory.getDeal(umowa);
+			deal.setKosztyUzyskania(kosztyUzyskania);
+			deal.setPrinter(printer);
+			deal.setPodstawa(oPodstawa);
+
+			printer.println(deal.getName());
+			printer.println("Podstawa wymiaru składek " + podstawa);
+			
 			printer.println("Składka na ubezpieczenie emerytalne "
 					+ df00.format(s_emerytalna));
 			printer.println("Składka na ubezpieczenie rentowe    "
 					+ df00.format(s_rentowa));
 			printer.println("Składka na ubezpieczenie chorobowe  "
 					+ df00.format(u_chorobowe));
-			System.out
-					.println("Podstawa wymiaru składki na ubezpieczenie zdrowotne: "
+			printer.println("Podstawa wymiaru składki na ubezpieczenie zdrowotne: "
 							+ oPodstawa);
 			obliczUbezpieczenia(oPodstawa);
 			printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
 					+ df00.format(s_zdrow1) + " 7,75% = "
 					+ df00.format(s_zdrow2));
-			printer.println("Koszty uzyskania przychodu w stałej wysokości "
-					+ kosztyUzyskania);
-			double podstawaOpodat = oPodstawa - kosztyUzyskania;
+			
+			deal.getCosts();
+			
+			double podstawaOpodat = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
 			double podstawaOpodat0 = Double.parseDouble(df
 					.format(podstawaOpodat));
 			printer.println("Podstawa opodatkowania " + podstawaOpodat
@@ -76,8 +83,8 @@ public class TaxCalculator {
 			obliczPodatek(podstawaOpodat0);
 			printer.println("Zaliczka na podatek dochodowy 18 % = "
 					+ zaliczkaNaPod);
-			printer.println("Kwota wolna od podatku = " + kwotaZmiejsz);
-			double podatekPotracony = zaliczkaNaPod - kwotaZmiejsz;
+			deal.free(kwotaZmiejsz);
+			double podatekPotracony = deal.podatek(kwotaZmiejsz, zaliczkaNaPod);
 			printer.println("Podatek potrącony = "
 					+ df00.format(podatekPotracony));
 			obliczZaliczke();
@@ -88,55 +95,14 @@ public class TaxCalculator {
 			double wynagrodzenie = podstawa
 					- ((s_emerytalna + s_rentowa + u_chorobowe) + s_zdrow1 + zaliczkaUS0);
 			printer.println();
-			System.out
-					.println("Pracownik otrzyma wynagrodzenie netto w wysokości = "
+			printer.println("Pracownik otrzyma wynagrodzenie netto w wysokości = "
 							+ df00.format(wynagrodzenie));
-		} else if (umowa == 'Z') {
-			printer.println("UMOWA-ZLECENIE");
-			printer.println("Podstawa wymiaru składek " + podstawa);
-			double oPodstawa = obliczonaPodstawa(podstawa);
-			printer.println("Składka na ubezpieczenie emerytalne "
-					+ df00.format(s_emerytalna));
-			printer.println("Składka na ubezpieczenie rentowe    "
-					+ df00.format(s_rentowa));
-			printer.println("Składka na ubezpieczenie chorobowe  "
-					+ df00.format(u_chorobowe));
-			System.out
-					.println("Podstawa wymiaru składki na ubezpieczenie zdrowotne: "
-							+ oPodstawa);
-			obliczUbezpieczenia(oPodstawa);
-			printer.println("Składka na ubezpieczenie zdrowotne: 9% = "
-					+ df00.format(s_zdrow1) + " 7,75% = "
-					+ df00.format(s_zdrow2));
-			kwotaZmiejsz = 0;
-			kosztyUzyskania = (oPodstawa * 20) / 100;
-			printer.println("Koszty uzyskania przychodu (stałe) "
-					+ kosztyUzyskania);
-			double podstawaOpodat = oPodstawa - kosztyUzyskania;
-			double podstawaOpodat0 = Double.parseDouble(df
-					.format(podstawaOpodat));
-			printer.println("Podstawa opodatkowania " + podstawaOpodat
-					+ " zaokrąglona " + df.format(podstawaOpodat0));
-			obliczPodatek(podstawaOpodat0);
-			printer.println("Zaliczka na podatek dochodowy 18 % = "
-					+ zaliczkaNaPod);
-			double podatekPotracony = zaliczkaNaPod;
-			printer.println("Podatek potrącony = "
-					+ df00.format(podatekPotracony));
-			obliczZaliczke();
-			zaliczkaUS0 = Double.parseDouble(df.format(zaliczkaUS));
-			printer.println("Zaliczka do urzędu skarbowego = "
-					+ df00.format(zaliczkaUS) + " po zaokrągleniu = "
-					+ df.format(zaliczkaUS0));
-			double wynagrodzenie = podstawa
-					- ((s_emerytalna + s_rentowa + u_chorobowe) + s_zdrow1 + zaliczkaUS0);
-			printer.println();
-			System.out
-					.println("Pracownik otrzyma wynagrodzenie netto w wysokości = "
-							+ df00.format(wynagrodzenie));
-		} else {
+			
+			
+		} catch (UnsupportedDealException e) {
 			printer.println("Nieznany typ umowy!");
 		}
+		
 	}
 
 	private char readType() {
